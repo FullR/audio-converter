@@ -1,15 +1,23 @@
 {
-    "name": "audio-builder",
-    "version": "1.0.0",
-    "bin": {
-        "audio-builder": "index.js"
-    },
-    "dependencies": {
-        "commander": "^2.7.1",
-        "glob": "^5.0.3",
-        "lodash": "^3.6.0",
-        "mkdirp": "^0.5.0",
-        "pace": "0.0.4",
-        "q": "^1.2.0"
-    }
+  "name": "audio-converter",
+  "version": "1.0.0",
+  "bin": {
+    "audio-converter": "index.js"
+  },
+  "dependencies": {
+    "commander": "^2.7.1",
+    "glob": "^5.0.3",
+    "lodash": "^3.6.0",
+    "mkdirp": "^0.5.0",
+    "pace": "0.0.4",
+    "q": "^1.2.0"
+  },
+  "description": "A utility tool for batch converting wave files to ogg/mp3. This tool currently depends on [SoX](http://sox.sourceforge.net/).",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "James Meyers",
+  "license": "ISC"
 }

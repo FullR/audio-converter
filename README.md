@@ -4,19 +4,19 @@ A utility tool for batch converting wave files to ogg/mp3. This tool currently d
 
 ## Install
 ```
-npm install audio-builder;
+npm install audio-converter;
 apt-get install sox
 ```
 
 ## Usage
 
 ### Command Line
-`audio-builder [options] <input-directory> <output-directory>`
+`audio-converter [options] <input-directory> <output-directory>`
 
 ### Node module
 ```javascript
-var audioBuilder = require("audio-builder");
-audioBuilder("path/to/waves", "path/to/output", {
+var audioConverter = require("audio-converter");
+audioConverter("path/to/waves", "path/to/output", {
     progressBar: true
 }).then(function() {
     console.log("Done!");
