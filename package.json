@@ -4,6 +4,10 @@
   "bin": {
     "audio-converter": "index.js"
   },
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/FullR/audio-converter.git"
+  },
   "dependencies": {
     "commander": "^2.7.1",
     "glob": "^5.0.3",
