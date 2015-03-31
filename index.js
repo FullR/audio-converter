@@ -7,7 +7,8 @@ var pkg    = require("./package"),
     Pace   = require("pace"),                         // progress bar
     glob   = Q.nfbind(require("glob")),               // filepath pattern matching
     mkdirp = Q.nfbind(require("mkdirp")),             // mkdir -p
-    exec   = Q.nfbind(require("child_process").exec); // for running sox commands
+    exec   = Q.nfbind(require("child_process").exec), // for running sox commands
+    wavRegex = /.wav$/;
 
 var defaultMp3Quality = "192",
     defaultOggQuality = "6",
@@ -46,9 +47,9 @@ function convertDirectory(inputDir, outputDir, options) {
     var mp3Quality,
         oggQuality,
         chunkSize,
-        started = new Date(),
         fileCount,
-        pace;
+        pace,
+        started = new Date();
 
     inputDir = resolvePath(inputDir);
     outputDir = resolvePath(outputDir);
@@ -69,6 +70,11 @@ function convertDirectory(inputDir, outputDir, options) {
 
     return Q.resolve()
         .then(glob.bind(null, path.join(inputDir, "/**/*.wav")))
+        .then(function(files) {
+            return files.filter(function(file) { // filter out all non-wave files
+                return file.match(wavRegex);
+            });
+        })
         .then(function(files) {
             var outDirectories = _.uniq(files.map(path.dirname)).map(function(directory) {
                 return directory.replace(inputDir, outputDir);
@@ -132,7 +138,7 @@ function convertDirectory(inputDir, outputDir, options) {
     */
     function buildOGG(inFile, inBase, outBase, quality) {
         var inDir = path.dirname(inFile),
-            outFile = inFile.replace(new RegExp("^"+inBase), outBase).replace(/.wav$/, ".ogg");
+            outFile = inFile.replace(new RegExp("^"+inBase), outBase).replace(wavRegex, ".ogg");
 
         verbose("Generating OGG");
         verbose("    " + inFile);
@@ -155,7 +161,7 @@ function convertDirectory(inputDir, outputDir, options) {
     */
     function buildMP3(inFile, inBase, outBase, quality) {
         var inDir = path.dirname(inFile),
-            outFile = inFile.replace(new RegExp("^"+inBase), outBase).replace(/.wav$/, ".mp3");
+            outFile = inFile.replace(new RegExp("^"+inBase), outBase).replace(wavRegex, ".mp3");
         
         verbose("Generating MP3");
         verbose("    " + inFile);
