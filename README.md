@@ -44,3 +44,11 @@ MP3 quality argument provided to Sox. Default: 192
 
 ### oggQuality, -O &lt;n&gt;
 OGG quality argument provided to Sox. Default: 6
+
+## Testing
+
+Install and run [Mocha](http://mochajs.org/)
+```
+npm install -g mocha;
+mocha
+```
