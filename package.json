@@ -23,5 +23,6 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "James Meyers",
-  "license": "ISC"
+  "license": "ISC",
+  "keywords": ["sound", "audio", "convert", "wave", "ogg", "mp3"]
 }
