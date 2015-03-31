@@ -31,7 +31,7 @@ if(require.main === module) { // called directly
         program.outputHelp();
     }
     else {
-        convertDirectory(resolvePath(program.args[0]),  resolvePath(program.args[1]), program)
+        convertDirectory(program.args[0], program.args[1], program)
             .catch(function(error) {
                 console.log("Error: " + error);
             });
@@ -50,6 +50,8 @@ function convertDirectory(inputDir, outputDir, options) {
         fileCount,
         pace;
 
+    inputDir = resolvePath(inputDir);
+    outputDir = resolvePath(outputDir);
     options = options || {};
     mp3Quality = options.mp3Quality || defaultMp3Quality;
     oggQuality = options.oggQuality || defaultOggQuality;
@@ -66,7 +68,7 @@ function convertDirectory(inputDir, outputDir, options) {
     }
 
     return Q.resolve()
-        .then(glob.bind(null, inputDir + "/**/*.wav"))
+        .then(glob.bind(null, path.join(inputDir, "/**/*.wav")))
         .then(function(files) {
             var outDirectories = _.uniq(files.map(path.dirname)).map(function(directory) {
                 return directory.replace(inputDir, outputDir);
