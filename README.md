@@ -1,4 +1,4 @@
-# Audio Converter
+# [Audio Converter](https://www.npmjs.com/package/audio-converter)
 
 A utility tool for batch converting wave files to ogg/mp3. This tool currently depends on [SoX](http://sox.sourceforge.net/).
 
