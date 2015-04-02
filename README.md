@@ -52,3 +52,14 @@ Install and run [Mocha](http://mochajs.org/)
 npm install -g mocha;
 mocha
 ```
+
+## Bugs & Issues
+
+If you find any problems with this module, feel free to create a new issue on the github page.
+
+## Author
+
+James Meyers
+
+[GitHub](https://github.com/FullR)
+

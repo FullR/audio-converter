@@ -189,4 +189,3 @@ function resolvePath(string) {
     }
     return path.resolve(string);
 }
-
