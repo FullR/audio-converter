@@ -41,9 +41,11 @@ Only generate OGGs
 
 ### mp3Quality, -M &lt;n&gt;
 MP3 quality argument provided to Sox. Default: 192
+Pass `false` or `"false"` to use Sox built-in defaults.
 
 ### oggQuality, -O &lt;n&gt;
 OGG quality argument provided to Sox. Default: 6
+Pass `false` or `"false"` to use Sox built-in defaults.
 
 ## Testing
 
@@ -62,4 +64,3 @@ If you find any problems with this module, feel free to create a new issue on th
 James Meyers
 
 [GitHub](https://github.com/FullR)
-

@@ -144,9 +144,9 @@ function convertDirectory(inputDir, outputDir, options) {
         verbose("    " + inFile);
         verbose("    " + outFile);
         return exec([
-            "sox", 
-            "'"+inFile+"'", 
-            "-C"+quality, 
+            "sox",
+            "'"+inFile+"'",
+            (quality === false || quality === "false") ? "" : "-C"+quality,
             "'" + outFile + "'"
         ].join(" "));
     }
@@ -162,14 +162,14 @@ function convertDirectory(inputDir, outputDir, options) {
     function buildMP3(inFile, inBase, outBase, quality) {
         var inDir = path.dirname(inFile),
             outFile = inFile.replace(new RegExp("^"+inBase), outBase).replace(wavRegex, ".mp3");
-        
+
         verbose("Generating MP3");
         verbose("    " + inFile);
         verbose("    " + outFile);
         return exec([
-            "sox", 
-            "'" + inFile + "'", 
-            "-C"+quality, 
+            "sox",
+            "'" + inFile + "'",
+            (quality === false || quality === "false") ? "" : "-C"+quality, 
             "'" + outFile + "'"
         ].join(" "));
     }
