@@ -1,21 +1,21 @@
 #!/usr/bin/env node
 
-var pkg    = require("./package"),
-    path   = require("path"),                         // parse/build file paths
-    Q      = require("q"),                            // Promise library
-    _      = require("lodash"),                       // utility library
-    Pace   = require("pace"),                         // progress bar
-    glob   = Q.nfbind(require("glob")),               // filepath pattern matching
-    mkdirp = Q.nfbind(require("mkdirp")),             // mkdir -p
-    exec   = Q.nfbind(require("child_process").exec), // for running sox commands
-    wavRegex = /.wav$/;
+const pkg    = require("./package");
+const path   = require("path");                         // parse/build file paths
+const Q      = require("q");                            // Promise library
+const _      = require("lodash");                       // utility library
+const Pace   = require("pace");                         // progress bar
+const glob   = Q.nfbind(require("glob"));               // filepath pattern matching
+const mkdirp = Q.nfbind(require("mkdirp"));             // mkdir -p
+const exec   = Q.nfbind(require("child_process").exec); // for running sox commands
+const wavRegex = /.wav$/;
 
-var defaultMp3Quality = "192",
-    defaultOggQuality = "6",
-    defaultChunkSize = 100;
+const defaultMp3Quality = "192";
+const defaultOggQuality = "6";
+const defaultChunkSize = 100;
 
 if(require.main === module) { // called directly
-    var program = require("commander"); // parsing command line arguments
+    const program = require("commander"); // parsing command line arguments
     program
         .version(pkg.version)
         .usage("[options] <input-directory> <output-directory>")
@@ -76,7 +76,7 @@ function convertDirectory(inputDir, outputDir, options) {
             });
         })
         .then(function(files) {
-            var outDirectories = _.uniq(files.map(path.dirname)).map(function(directory) {
+            var outDirectories = uniq(files.map(path.dirname)).map(function(directory) {
                 return directory.replace(inputDir, outputDir);
             });
             fileCount = files.length;
@@ -93,7 +93,7 @@ function convertDirectory(inputDir, outputDir, options) {
         })
         .then(function(files) {
             verbose("Converting with chunk size " + chunkSize);
-            return _.chunk(files, chunkSize).reduce(function(promise, chunk) {
+            return chunk(files, chunkSize).reduce(function(promise, chunk) {
                 return promise.then(function() { // after the last chunk has finished
                     return Q.all(chunk.map(convertFile));
                 });
@@ -169,7 +169,7 @@ function convertDirectory(inputDir, outputDir, options) {
         return exec([
             "sox",
             "'" + inFile + "'",
-            (quality === false || quality === "false") ? "" : "-C"+quality, 
+            (quality === false || quality === "false") ? "" : "-C"+quality,
             "'" + outFile + "'"
         ].join(" "));
     }
