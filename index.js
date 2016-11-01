@@ -109,7 +109,7 @@ function convertDirectory(inputDir, outputDir, options) {
     function convertFile(file) {
         var promise;
         if(mp3Only) {
-            promise = buildMP3(file, inputDir, outputDir, oggQuality);
+            promise = buildMP3(file, inputDir, outputDir, mp3Quality);
         }
         else if(oggOnly) {
             promise = buildOGG(file, inputDir, outputDir, oggQuality);
