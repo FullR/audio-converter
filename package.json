@@ -1,6 +1,6 @@
 {
   "name": "audio-converter",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "bin": {
     "audio-converter": "index.js"
   },
@@ -19,9 +19,11 @@
   },
   "description": "A utility tool for batch converting wave files to ogg/mp3. This tool currently depends on [SoX](http://sox.sourceforge.net/).",
   "main": "index.js",
-  "devDependencies": {},
+  "devDependencies": {
+    "mocha": "^3.1.2"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "author": "James Meyers",
   "license": "ISC",

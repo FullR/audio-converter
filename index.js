@@ -3,7 +3,8 @@
 const pkg    = require("./package");
 const path   = require("path");                         // parse/build file paths
 const Q      = require("q");                            // Promise library
-const _      = require("lodash");                       // utility library
+const chunk  = require("lodash.chunk");
+const uniq  = require("lodash.uniq");
 const Pace   = require("pace");                         // progress bar
 const glob   = Q.nfbind(require("glob"));               // filepath pattern matching
 const mkdirp = Q.nfbind(require("mkdirp"));             // mkdir -p
